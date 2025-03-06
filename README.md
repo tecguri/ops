@@ -18,7 +18,18 @@ Ensure you have the following installed on **Windows 10**:
 - **MongoDB** (Running locally or on Atlas)  
 - **Redis** (Install via [Redis for Windows](https://github.com/microsoftarchive/redis/releases))  
 - **AWS Account** (For SQS & SES)  
-- **Postman** (For API testing)  
+- **Postman** (For API testing)
+  
+**Option 2 to set up Redis on your system **
+
+- wsl --install
+- sudo apt update
+- sudo apt install redis
+- redis-server
+- npm install ioredis
+- sudo killall redis-server
+- redis-server
+- redis-server --port 6380
 
 ---
 
@@ -26,8 +37,8 @@ Ensure you have the following installed on **Windows 10**:
 
 ### **🔻 Step 1: Clone the Repository**  
 ```sh
-git clone https://github.com/your-repo/order-processing.git
-cd order-processing
+git clone https://github.com/tecguri/ops.git
+cd ops
 ```
 
 ### **🔻 Step 2: Install Dependencies**  
@@ -66,11 +77,13 @@ mongod
 Open a terminal and run:  
 ```sh
 redis-server
+OR
+redis-server --port 6380
 ```
 
 ### **🔹 Start the API Server**
 ```sh
-npm start
+npm start OR nodemon start
 ```
 or for development mode (with auto-reload):  
 ```sh
@@ -96,8 +109,10 @@ npm run dev
 
 ### **📦 Inventory**
 | Method | Endpoint         | Description                |
-|--------|-----------------|----------------------------|
-| GET    | `/api/inventory` | Get inventory stock levels |
+|--------|------------------|----------------------------|
+| GET    | `/api/inventory` | Get all inventory              |
+| GET    | `/api/inventory/add` | Add new inventory |
+| GET    | `/api/inventory/update/:product_id` | update inventory details |
 
 ---
 
@@ -145,12 +160,6 @@ npm install @aws-sdk/client-sqs
 
 ---
 
-## **📌 7. Future Improvements**
-- Implement WebSocket for real-time order updates  
-- Add Payment Integration (Stripe, PayPal)  
-- Enhance security with OAuth  
-
----
 
 🚀 **Now you are ready to run the Order Processing System!** 🎉  
 Let me know if you need any modifications! 😊
